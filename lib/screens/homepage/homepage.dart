@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yt_wrapper/screens/video_page/video_page.dart';
 
 import '../../models/video.dart';
 import '../../services/api_service.dart';
+import 'widgets/video_listtile.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -17,36 +17,25 @@ class Homepage extends StatelessWidget {
         future: APIService.instance.fetchVideosFromPlaylist(
           playlistId: 'PLQa-JAExqnKHKa_CyWIJGBtIM7zOCxJix',
         ),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<Video> videos = snapshot.data!;
-            return ListView.builder(
-              itemCount: videos.length,
-              itemBuilder: (context, index) {
-                Video video = videos[index];
-                return ListTile(
-                  title: Text(video.title),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => VideoPage(
-                          videoId: video.id,
-                          title: video.title,
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+        builder: buildBody,
       ),
     );
+  }
+
+  Widget buildBody(context, snapshot) {
+    if (snapshot.hasData) {
+      List<Video> videos = snapshot.data!;
+      return ListView.builder(
+        itemCount: videos.length,
+        itemBuilder: (context, index) {
+          Video video = videos[index];
+          return VideoListTile(video: video);
+        },
+      );
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
 }
