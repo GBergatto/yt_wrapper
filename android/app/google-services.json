@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "872171935326",
+    "project_id": "youtube-wrapper-338506",
+    "storage_bucket": "youtube-wrapper-338506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872171935326:android:07921d950b118c61f786cf",
+        "android_client_info": {
+          "package_name": "com.gbergatto.door_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872171935326-64mckn6lcop8ejqf6sbq2ab5mh4oi90o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB1EE8yKV6Y0JLPOi5yRmIIpto-_2SMnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872171935326-64mckn6lcop8ejqf6sbq2ab5mh4oi90o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
