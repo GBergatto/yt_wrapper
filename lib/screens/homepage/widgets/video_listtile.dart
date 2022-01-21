@@ -9,7 +9,7 @@ class VideoListTile extends StatelessWidget {
     required this.video,
   }) : super(key: key);
 
-  final Video video;
+  final MyVideo video;
 
   void openVideo(BuildContext context) {
     Navigator.push(

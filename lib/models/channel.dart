@@ -1,15 +1,15 @@
 import 'video.dart';
 
-class Channel {
+class MyChannel {
   final String id;
   final String title;
   final String profilePictureUrl;
   final String subscriberCount;
   final String videoCount;
   final String uploadPlaylistId;
-  List<Video> videos;
+  List<MyVideo> videos;
 
-  Channel({
+  MyChannel({
     required this.id,
     required this.title,
     required this.profilePictureUrl,
@@ -19,8 +19,8 @@ class Channel {
     required this.videos,
   });
 
-  factory Channel.fromMap(Map<String, dynamic> map) {
-    return Channel(
+  factory MyChannel.fromMap(Map<String, dynamic> map) {
+    return MyChannel(
       id: map['id'],
       title: map['snippet']['title'],
       profilePictureUrl: map['snippet']['thumbnails']['default']['url'],
