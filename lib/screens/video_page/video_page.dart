@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:yt_wrapper/models/video.dart';
+
+import 'widgets/like_button.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({
     Key? key,
-    required this.title,
-    required this.videoId,
+    required this.video,
   }) : super(key: key);
 
-  final String title;
-  final String videoId;
+  final MyVideo video;
 
   @override
   _VideoPageState createState() => _VideoPageState();
@@ -23,7 +24,7 @@ class _VideoPageState extends State<VideoPage> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: widget.videoId,
+      initialVideoId: widget.video.id,
       flags: const YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -38,7 +39,7 @@ class _VideoPageState extends State<VideoPage> {
       appBar: (_isFullScreen)
           ? null
           : AppBar(
-              title: Text(widget.title),
+              title: Text(widget.video.title),
             ),
       body: YoutubePlayerBuilder(
         onEnterFullScreen: () {
@@ -61,6 +62,15 @@ class _VideoPageState extends State<VideoPage> {
           return Column(
             children: [
               player,
+              LikeButton(videoId: widget.video.id),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                    child: Text(widget.video.description),
+                  ),
+                ),
+              )
             ],
           );
         },

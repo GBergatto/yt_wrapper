@@ -15,10 +15,7 @@ class VideoListTile extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => VideoPage(
-          videoId: video.id,
-          title: video.title,
-        ),
+        builder: (_) => VideoPage(video: video),
       ),
     );
   }
