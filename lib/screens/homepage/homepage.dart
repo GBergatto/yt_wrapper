@@ -37,16 +37,19 @@ class _HomepageState extends State<Homepage> {
   }
 
   Future<List<MyVideo>> _getVideos() async {
-    // // final GoogleSignInAccount? googleSignInAccount =
-    // //     await _googleSignIn.signIn();
-    // // final GoogleSignInAuthentication googleSignInAuthentication =
-    // //     await googleSignInAccount!.authentication;
+    print('getting videos...');
+    //! this is needed to sign in
+    final GoogleSignInAccount? googleSignInAccount =
+        await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
 
     var httpClient = (await _googleSignIn.authenticatedClient())!;
     var youTubeApi = YouTubeApi(httpClient);
     var favorites = await youTubeApi.playlistItems.list(
       ['snippet'],
       playlistId: 'PLQa-JAExqnKHKa_CyWIJGBtIM7zOCxJix',
+      maxResults: 20,
     );
 
     List<MyVideo> videos = [];
@@ -66,6 +69,14 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {});
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<MyVideo>>(
         future: _getVideos(),
